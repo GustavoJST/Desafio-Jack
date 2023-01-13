@@ -11,7 +11,7 @@ spec:
   replicas: {{ .Values.replicaCount }}
   {{- end }}
   strategy:
-    type: Recreate
+    type: {{ .Values.deployment.strategy.type }}
   selector:
     matchLabels:
       app: {{ .Values.app }}
