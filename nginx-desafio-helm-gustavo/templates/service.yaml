@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "nginx-desafio-helm-gustavo.fullname" . }}
+  labels:
+    {{- include "nginx-desafio-helm-gustavo.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "nginx-desafio-helm-gustavo.selectorLabels" . | nindent 4 }}
